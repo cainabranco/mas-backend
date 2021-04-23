@@ -7,11 +7,14 @@
   "author": "<Gustavo Cainã Branco> <<cainabranco@gmail.com>>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node-modules src/server.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node-modules src/server.ts",
+    "start": "ts-node src/index.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "typeorm": "^0.2.32"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
