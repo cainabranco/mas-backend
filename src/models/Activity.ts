@@ -12,10 +12,22 @@ class Activity {
     }
 
     @PrimaryColumn()
-    readonly id: string
+    readonly id: string;
+
+    @Column()
+    name: string;
+
+    @Column()
+    activity_date: Date;
+
+    @Column()
+    course_unit_id: number;
+
+    @CreateDateColumn()
+    created_at: Date;
 
     @ManyToOne(() => CourseUnit, course_unit => course_unit.activities)
     course_unit: CourseUnit
 }
 
-export {Activity}
+export {Activity};

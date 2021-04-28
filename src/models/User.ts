@@ -10,7 +10,7 @@ class User {
         }
     }
     @PrimaryColumn()
-    readonly id:string
+    readonly id: string;
 
     @Column()
     name: string;
@@ -25,4 +25,4 @@ class User {
     created_at:Date;
 }
 
-export {User}
+export {User};
