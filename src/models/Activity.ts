@@ -21,7 +21,7 @@ class Activity {
     activity_date: Date;
 
     @Column()
-    course_unit_id: number;
+    course_unit_id: string;
 
     @CreateDateColumn()
     created_at: Date;
