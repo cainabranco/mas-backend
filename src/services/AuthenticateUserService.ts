@@ -11,6 +11,7 @@ interface AuthData {
 
 class AuthenticateUserService {
     public async execute({email, password}: AuthData): Promise<String | {}>{
+
         const usersRepository = getRepository(User);
 
         const user = await usersRepository.findOne({email});
@@ -21,7 +22,7 @@ class AuthenticateUserService {
             }
         }
 
-        const comparePassword = compare(password, user.password);
+        const comparePassword = await compare(password, user.password);
 
         if (!comparePassword) {
             return {
@@ -32,11 +33,21 @@ class AuthenticateUserService {
         const {secret, expiresIn} = authConfig.jwt;
 
         const token = sign({"role":"user"}, secret, {
+            algorithm: 'RS256',
             subject: user.id,
             expiresIn
         });
 
-        return token;
+        const {id, name, email:emailUser} = user
+
+        return {
+            user:{
+               id,
+               name,
+               email: emailUser
+            },
+            token
+        };
     }
 }
 

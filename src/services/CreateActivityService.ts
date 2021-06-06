@@ -1,23 +1,25 @@
 import {getRepository} from 'typeorm';
-import {Activity} from '../models/Activity';
+import {Activity} from "../models/Activity";
 
 interface ActivityData {
     name: string;
     activity_date: string;
-    course_unit_id: string;
+    grade: number;
+    courseUnitId: string;
 }
 
 class CreateActivityService {
 
-    public async execute({name, activity_date, course_unit_id}: ActivityData) {
+    public async execute({name, activity_date, grade, courseUnitId}: ActivityData): Promise<Activity> {
 
         const activityRepository = getRepository(Activity);
 
-        const activity = {
+        const activity = activityRepository.create({
             name,
             activity_date,
-            course_unit_id
-        }
+            grade,
+            courseUnitId
+        });
 
         await activityRepository.save(activity);
 
